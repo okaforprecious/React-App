@@ -56,7 +56,8 @@ const Data = () => {
           <div onClick={() => handlenavigation(items._id)}>
             <button>Click to view user details</button>
           </div>
-          {/* create a folder under pages, DetailsPage and a file under that folder UserDetails.tsx
+          {/* create a folder under pages, DetailsPage and a file under
+           that folder UserDetails.tsx
           go to App.tsx and register the component userDetails 
           on your browser to see a single user, copy the Api and paste on 
           a different tab then /"an id"(if needed)
