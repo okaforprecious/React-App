@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { MdDeleteForever } from "react-icons/md";
 const Data = () => {
   const [viewResult, setViewResult] = useState([]);
   console.log(viewResult);
@@ -25,6 +26,22 @@ const Data = () => {
   const navigate = useNavigate();
   const handlenavigation = (id: any) => {
     navigate(`/userDetails/${id}`);
+  };
+
+  const handleDelete = (id: any) => {
+    // setLoading(true)
+    try {
+      axios.delete(
+        `https://fullstack-student-backend.onrender.com/api/auth/delete/${id}`
+      );
+      window.location.reload();
+      // navigate("/")
+      // setSuccessMessage("")
+      // setLoading(false)
+    } catch (error) {
+      // setErrorMessage("")
+      // setLoading(false)
+    }
   };
 
   return (
@@ -62,6 +79,12 @@ const Data = () => {
           on your browser to see a single user, copy the Api and paste on 
           a different tab then /"an id"(if needed)
           */}
+          <div>
+            <MdDeleteForever
+              style={{ color: "red" }}
+              onClick={() => handleDelete(items._id)}
+            />
+          </div>
         </>
       ))}
     </div>

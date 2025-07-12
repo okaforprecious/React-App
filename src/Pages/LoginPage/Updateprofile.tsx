@@ -9,8 +9,12 @@ import {
 import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
-    const navigate = useNavigate();
+export default function Updateprofile() {
+  // to track a user
+  const userId = localStorage.getItem("userId");
+  console.log(userId);
+  // to track a user^
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -45,15 +49,15 @@ export default function Signup() {
       "Content-Type": "application/json",
     };
     try {
-      const response = await axios.post(
-        "https://fullstack-student-backend.onrender.com/api/auth",
+      const response = await axios.put(
+        `https://fullstack-student-backend.onrender.com/api/auth/update/${userId}`,
         data,
         {
           headers,
         }
       );
 
-      setSuccessMsg("Signup successful!");
+      setSuccessMsg("Update successful!");
       setFirstName("");
       setLastName("");
       setEmail("");
@@ -62,9 +66,11 @@ export default function Signup() {
       setAgreed(false);
 
       localStorage.setItem("userId", response.data._id);
-        navigate("/Login");
+      navigate("/Login");
     } catch (error: any) {
-      setErrorMsg(error?.response?.data?.message || "Signup failed.");
+      setErrorMsg(
+        error?.response?.data?.message || " failed to Update user profile."
+      );
     } finally {
       setLoading(false);
     }
@@ -86,7 +92,7 @@ export default function Signup() {
       </div>
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-          SignUp
+          Update user profile
         </h2>
         <p className="mt-2 text-lg text-gray-600">
           Join us to access awesome features!
@@ -262,7 +268,7 @@ export default function Signup() {
                 : "bg-indigo-600 hover:bg-indigo-500"
             }`}
           >
-            {loading ? "Loading..." : "Signup"}
+            {loading ? "Loading..." : "Update"}
           </button>
         </div>
       </form>
