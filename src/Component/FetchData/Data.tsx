@@ -57,7 +57,7 @@ const Data = () => {
           {/* to link to product details page */}
           {/* example 1 */}
           <button>
-            <a href={`/userDetails/${items._id}`}>Click for more details</a>
+            <a href={`/userDetails/${items._id}`}>Click for more details..</a>
           </button>
 
           {/* Example2 */}
